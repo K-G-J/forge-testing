@@ -8,16 +8,16 @@ import "../src/mocks/MockERC20.sol";
 contract StakeContractTest is Test {
     StakeContract public stakeContract;
     MockERC20 public token;
-    uint256 public constant AMOUNT = 1e18; // 1 token
+    // uint256 public constant AMOUNT = 1e18; // 1 token
 
     function setUp() public {
         stakeContract = new StakeContract();
         token = new MockERC20();
     }
 
-    function testStakingTokens() public {
-        token.approve(address(stakeContract), AMOUNT);
-        bool success = stakeContract.stake(AMOUNT, address(token));
+    function testStakingTokens(uint16 amount) public {
+        token.approve(address(stakeContract), amount);
+        bool success = stakeContract.stake(amount, address(token));
         assertTrue(success);
     }
 }
